@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
-        final EditText firstName = (EditText) findViewById(R.id.editText);
-        final EditText lastName = (EditText) findViewById(R.id.editText2);
-        final Button buttonAccept = (Button) findViewById(R.id.button);
-        final TextView congratulations = (TextView) findViewById(R.id.textView2);
+        final CheckBox checkBox = findViewById(R.id.checkBox);
+        final EditText firstName = findViewById(R.id.editText);
+        final EditText lastName = findViewById(R.id.editText2);
+        final Button buttonAccept = findViewById(R.id.button);
+        final TextView congratulations = findViewById(R.id.textView2);
 
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,9 +30,11 @@ public class MainActivity extends AppCompatActivity {
                 if (checkBox.isChecked()) {
                     firstName.setEnabled(true);
                     lastName.setEnabled(true);
+                    buttonAccept.setEnabled(true);
                 }else{
                     firstName.setEnabled(false);
                     lastName.setEnabled(false);
+                    buttonAccept.setEnabled(false);
                 }
             }
         });
@@ -48,22 +50,18 @@ public class MainActivity extends AppCompatActivity {
                 String lastNameString = lastName.getText().toString();
                 String congrats = getResources().getString(R.string.congrats);
                 StringBuilder sb = new StringBuilder();
-                ;
 
                 if(firstNameString.matches("") || lastNameString.matches("")){
                     Toast buttonToast = Toast.makeText(context, toastString, duration);
                     buttonToast.setGravity(Gravity.BOTTOM, 0, 100);
                     buttonToast.show();
                 }else{
-                    congratulations.setText(sb.append(congrats).append(" ")
-                            .append(firstNameString).append(" ")
-                            .append(lastNameString).toString());
 
+                    congratulations.setText(sb.append(congrats).append(" ")
+                                .append(firstNameString).append(" ")
+                                .append(lastNameString).toString());
                     congratulations.setVisibility(View.VISIBLE);
                 }
-
-
-
             }
         });
 
